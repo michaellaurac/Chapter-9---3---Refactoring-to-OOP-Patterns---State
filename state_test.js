@@ -6,7 +6,7 @@ const fileName = () => {
 /* eslint-env mocha */
 
 const wish = require("wish");
-const { Person, binary } = require("./state.js");
+const { Person, binaryAwareness, binaryObliviousness } = require("./state.js");
 
 describe("tests run on the 'state.js' file:", () => {
   // setup test
@@ -14,25 +14,25 @@ describe("tests run on the 'state.js' file:", () => {
     wish(fileName() === "state_test.js");
   });
   // initialisation
-  const personOne = new Person(binary.readAware, binary.andAware, binary.xorAware);
-  const personTwo = new Person(binary.readOblivious, binary.andOblivious, binary.xorOblivious);
+  const personOne = new Person(binaryAwareness);
+  const personTwo = new Person(binaryObliviousness);
   // functional tests
   it("checks that '10' is read as '2' for a binary read aware", () => {
-    wish(personOne.read(10) === 2);
+    wish(personOne.binaryKnowledge.read(10) === 2);
   });
   it("checks that '10' is read as '10' for a binary read oblivious", () => {
-    wish(personTwo.read(10) === 10);
+    wish(personTwo.binaryKnowledge.read(10) === 10);
   });
   it("checks that '2 & 3' yields '2' for a binary and knower", () => {
-    wish(personOne.and(2, 3) === 2);
+    wish(personOne.binaryKnowledge.and(2, 3) === 2);
   });
   it("checks that '2 & 3' yields 'unknown' for a binary and oblivious", () => {
-    wish(personTwo.and(2, 3) === "unknown");
+    wish(personTwo.binaryKnowledge.and(2, 3) === "unknown");
   });
   it("checks that '2 ^ 3' yields '1' for a binary xor knower", () => {
-    wish(personOne.xor(2, 3) === 1);
+    wish(personOne.binaryKnowledge.xor(2, 3) === 1);
   });
   it("checks that '2 ^ 3' yields 'unknown' for a binary xor oblivious", () => {
-    wish(personTwo.xor(2, 3) === "unknown");
+    wish(personTwo.binaryKnowledge.xor(2, 3) === "unknown");
   });
 });

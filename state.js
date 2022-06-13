@@ -1,20 +1,21 @@
 class Person {
-  constructor (readKnowledge, andKnowledge, xorKnowledge) {
-    this.read = readKnowledge;
-    this.and = andKnowledge;
-    this.xor = xorKnowledge;
+  constructor (binaryKnowledge) {
+    this.binaryKnowledge = binaryKnowledge;
   };
 
   read (number) { return this.whatIs(number); };
 };
 
-const binary = {
-  readAware (number) { return Number("0b" + number); },
-  readOblivious (number) { return number; },
-  andAware (numberOne, numberTwo) { return numberOne & numberTwo; },
-  andOblivious (numberOne, numberTwo) { return "unknown"; },
-  xorAware (numberOne, numberTwo) { return numberOne ^ numberTwo; },
-  xorOblivious (numberOne, numberTwo) { return "unknown"; }
+const binaryAwareness = {
+  read (number) { return Number("0b" + number); },
+  and (numberOne, numberTwo) { return numberOne & numberTwo; },
+  xor (numberOne, numberTwo) { return numberOne ^ numberTwo; }
 };
 
-module.exports = { Person, binary };
+const binaryObliviousness = {
+  read (number) { return number; },
+  and (numberOne, numberTwo) { return "unknown"; },
+  xor (numberOne, numberTwo) { return "unknown"; }
+};
+
+module.exports = { Person, binaryAwareness, binaryObliviousness };
