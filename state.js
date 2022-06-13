@@ -2,8 +2,6 @@ class Person {
   constructor (binaryKnowledge) {
     this.binaryKnowledge = binaryKnowledge;
   };
-
-  read (number) { return this.whatIs(number); };
 };
 
 const binaryAwareness = {
