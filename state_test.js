@@ -39,7 +39,6 @@ describe("tests run on the 'state.js' file:", () => {
   personOne.binaryKnowledge.forget();
   personTwo.binaryKnowledge.learn();
 
-  console.log(personOne.binaryKnowledge.read(10));
   // functional tests
   it("checks that '10' is read as '2' for a binary read aware such as personTwo", () => {
     assert(personTwo.binaryKnowledge.read(10), 2);
